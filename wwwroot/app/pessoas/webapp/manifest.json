@@ -1,0 +1,126 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "br.com.idxtec.pessoas",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"dataSources": {
+			"default": {
+				"uri": "../../../service.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "br.com.idxtec.pessoas.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"handleValidation": true,
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "br.com.idxtec.pessoas.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "default",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"synchronizationMode": "None",
+					"updateGroupId" : "UpdateGroup",
+					"autoExpandSelect": true
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "br.com.idxtec.pessoas.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition": "slide",
+				"async": true
+			},
+			"routes": [{
+				"pattern": "",
+				"name": "appHome",
+				"target": "home"
+			},{
+				"pattern": "add-pessoa",
+				"name":"add",
+				"target":"add"
+			},{
+				"pattern": "update-pessoa/{id}",
+				"name":"update",
+				"target":"update"
+			}
+			],
+			"targets": {
+				"home": {
+					"viewId": "home",
+					"viewName": "App",
+					"viewLevel" : 1
+				},
+				"add":{
+					"viewId": "add",
+					"viewName": "AddPage",
+					"viewLevel" : 2
+				},
+				"update":{
+					"viewId": "update",
+					"viewName": "UpdatePage",
+					"viewLevel" : 2
+				}
+			}
+		}
+	}
+}

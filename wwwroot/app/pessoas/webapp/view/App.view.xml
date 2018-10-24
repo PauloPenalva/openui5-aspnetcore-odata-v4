@@ -1,0 +1,117 @@
+<mvc:View
+	controllerName="br.com.idxtec.pessoas.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns:t="sap.ui.table"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form">
+	<App id="app">
+		<pages>
+			<Page
+				id="page"
+				title="{i18n>title}" 
+				showHeader="false">
+				<content>
+					<t:Table
+						id="table"
+						selectionMode="Single"
+						visibleRowCount="20"
+						enableSelectAll="false"
+						alternateRowColors="true"
+						rows="{
+							path: '/Pessoas',
+							parameters: {
+								operationMode: 'Server'
+							}
+						}"
+						threshold="15"
+						enableBusyIndicator="true"
+						ariaLabelledBy="title"
+						rowHeight="5em"
+						>
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Cadastro de Pessoas"/>
+								<ToolbarSpacer/>
+								<SearchField
+									placeholder="Pesquisar..."
+									search="onFiltro"
+									width="20rem"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column sortProperty="id" filterProperty="id" width="5em">
+								<Label text="Id"/>
+								<t:template>
+									<Text text="{id}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column id="nome" sortProperty="nome" filterProperty="nome" width="25em">
+								<Label text="Nome"/>
+								<t:template>
+									<Text text="{nome}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="cnpj" filterProperty="cnpj" width="15em">
+								<Label text="Cnpj"/>
+								<t:template>
+									<Text text="{cnpj}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="inscricao" filterProperty="inscricao" width="10em">
+								<Label text="Ins.Estadual"/>
+								<t:template>
+									<Text text="{inscricao}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column sortProperty="telefone" filterProperty="telefone" width="10em">
+								<Label text="Telefone"/>
+								<t:template>
+									<Text text="{telefone}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+						<t:footer>
+							<Toolbar>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://synchronize" press="onBtnAtualizarPress"/>
+								<Button icon="sap-icon://clear-filter" press="clearFilter"/>
+							</Toolbar>
+						</t:footer>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Incluir" press="onBtnIncluirPress"/>
+						<Button text="Alterar" press="onBtnAlterarPress"/>
+						<Button text="Remover" press="onBtnRemoverPress"/>
+						<dependents>
+							<Dialog id="IncluiPessoaDialog" title="Inclui Nova Pessoa">
+								<buttons>
+									<Button text="Ok" press="onBtnOkDialogIncluir" type="Accept"/>
+									<Button text="Cancelar" press="onBtnCancelarDialogIncluir" type="Reject"/>
+								</buttons>
+								<f:SimpleForm editable="true" layout="ResponsiveGridLayout"
+									ariaLabelledBy="IncluiPessoaDialog" class="sapUiSizeCompact">
+									<core:Title text="Incluir Nova Pessoa"/>
+									<Label text="Pessoa ID" />
+									<Input text="{id}" editable="false" />
+									<Label text="Nome" />
+									<Input value="{nome}" />
+									<Label text="CNPJ" />
+									<Input value="{cnpj}" />
+									<Label text="Ins.Estadual" />
+									<Input value="{inscricao}" />
+									<Label text="Telefone" />
+									<Input value="{telefone}" />
+								</f:SimpleForm>
+							</Dialog>
+						</dependents>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

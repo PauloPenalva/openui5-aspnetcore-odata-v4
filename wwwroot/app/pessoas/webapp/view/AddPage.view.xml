@@ -1,0 +1,45 @@
+<mvc:View
+	controllerName="br.com.idxtec.pessoas.controller.AddPage"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
+    <Page showNavButton="true" 	navButtonPress="onNavBack" title="{i18n>title}" 
+        showHeader="false" id="addPage">
+        <content>
+           
+            <f:SimpleForm 
+                id="addForm"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+                columnsL="1" columnsM="1">
+                <f:content>
+                    <core:Title text="Incluir Nova Pessoa"/>
+                    <Label text="Pessoa ID" />
+                    <Text text="{id}" />
+                    <Label text="Nome" />
+                    <Input value="{nome}" />
+                    <Label text="CNPJ" />
+                    <Input value="{cnpj}" />
+                    <Label text="Ins.Estadual" />
+                    <Input value="{inscricao}" />
+                    <Label text="Telefone" />
+                    <Input value="{telefone}" />
+                </f:content>
+			</f:SimpleForm>
+
+        </content>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="Salvar" press="onBtnSalvarPress"/>
+                <Button text="Cancelar" press="onBtnCancelarPress"/>
+            </Toolbar>
+        </footer>
+    </Page>
+
+
+</mvc:View>    

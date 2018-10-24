@@ -1,0 +1,14 @@
+E:\Projetos\aspnetcore2\PessoasAPI\bin\Debug\netcoreapp2.1\PessoasAPI.deps.json
+E:\Projetos\aspnetcore2\PessoasAPI\bin\Debug\netcoreapp2.1\PessoasAPI.runtimeconfig.json
+E:\Projetos\aspnetcore2\PessoasAPI\bin\Debug\netcoreapp2.1\PessoasAPI.runtimeconfig.dev.json
+E:\Projetos\aspnetcore2\PessoasAPI\bin\Debug\netcoreapp2.1\PessoasAPI.dll
+E:\Projetos\aspnetcore2\PessoasAPI\bin\Debug\netcoreapp2.1\PessoasAPI.pdb
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.csprojAssemblyReference.cache
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.csproj.CoreCompileInputs.cache
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.RazorAssemblyInfo.cache
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.RazorAssemblyInfo.cs
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.AssemblyInfoInputs.cache
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.AssemblyInfo.cs
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.RazorTargetAssemblyInfo.cache
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.dll
+E:\Projetos\aspnetcore2\PessoasAPI\obj\Debug\netcoreapp2.1\PessoasAPI.pdb
