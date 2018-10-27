@@ -6,7 +6,7 @@ namespace PessoasAPI.Models{
     [Table("pessoa")]
     public class Pessoa : BaseModel{
         
-        [Required, MaxLength(100)]
+        [Required, MaxLength(100), MinLength(1)]
         public string nome { get; set; }
         
         [MaxLength(14)]

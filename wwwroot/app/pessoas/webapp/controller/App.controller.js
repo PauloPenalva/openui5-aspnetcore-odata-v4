@@ -3,9 +3,8 @@ sap.ui.define([
 	"br/com/idxtec/pessoas/model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/model/Sorter",
 	"sap/m/MessageBox"
-], function(BaseController, formatter, Filter, FilterOperator, Sorter, Dialog, MessageBox) {
+], function(BaseController, formatter, Filter, FilterOperator, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("br.com.idxtec.pessoas.controller.App", {
@@ -18,10 +17,8 @@ sap.ui.define([
 
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 			
-			/* 
-			var oNomeColumn = oView.byId("nome");
-			oView.byId("table").sort(oNomeColumn, sap.ui.table.SortOrder.Ascending); 
-			*/
+			var oNomeColumn = oView.byId("id");
+			oView.byId("table").sort(oNomeColumn, sap.ui.table.SortOrder.Descending);
 
 			oTable.clearSelection();
 		},
@@ -53,12 +50,17 @@ sap.ui.define([
 			this.byId("table").setSelectedIndex(0);
 
 			dialog = this.byId("IncluiPessoaDialog");
+			dialog.setEscapeHandler(function(oPromise){
+				this.byId("table").getBinding("rows").resetChanges();
+				oPromise.resolve();
+			}.bind(this));
+
 			dialog.setBindingContext(oContext);
 			dialog.open();
 
 			oContext.created().then(function(){
 				oBinding.refresh();
-			}, function(error){
+			}, (error) => {
 				MessageBox.error(error.message);
 			});
 
@@ -66,14 +68,17 @@ sap.ui.define([
 
 		onBtnOkDialogIncluir: function(e){
 			let that = this;
-			let fnError = function(error){
-				MessageBox.error(error.message);
+			
+			let fnOK = function(){
+				this.byId("IncluiPessoaDialog").close();
 			}.bind(this);
 
-			this.getOwnerComponent().getModel().submitBatch("UpdateGroup").then(
-				function(){
-					that.byId("IncluiPessoaDialog").close();	
-				}, fnError );
+			let fnError = function(error){
+				MessageBox.error(error.message);
+			};
+
+			this.getView().getModel().submitBatch("UpdateGroup")
+					.then(fnOK, fnError);	
 		},
 
 		onBtnCancelarDialogIncluir: function(e){
@@ -82,19 +87,45 @@ sap.ui.define([
 		},
 
 		onBtnAlterarPress: function(e){
-			let oContext = this.onSelectItem(e);
+			let oDialog,
+			    oContext = this.onSelectItem(e);
+			
 			if (oContext){
-				let id = oContext.getObject().id;
 				
-				this.byId("table").clearSelection();
-				this.getOwnerComponent().getRouter().navTo("update",{
-					"id": id
-				});
+				oDialog = this.byId("AlteraPessoaDialog");
+				
+				oDialog.setEscapeHandler(function(oPromise){
+					this.byId("table").getBinding("rows").resetChanges();
+					oPromise.resolve();
+				}.bind(this));
+
+				oDialog.setBindingContext(oContext);
+				oDialog.open();
+				
 			} else {
-				sap.m.MessageBox.warning("Selecione um item na tabela.");
+				MessageBox.warning("Selecione um item na tabela.");
 			}
 			
 		},
+
+
+		onBtnOkDialogAlterar: function(e){
+			let that = this;
+			let fnError = function(error){
+				MessageBox.error(error.message);
+			}.bind(this);
+
+			this.getOwnerComponent().getModel().submitBatch("UpdateGroup").then(
+				function(){
+					that.byId("AlteraPessoaDialog").close();	
+				}, fnError );
+		},
+
+		onBtnCancelarDialogAlterar: function(e){
+			this.byId("table").getBinding("rows").resetChanges();
+			this.byId("AlteraPessoaDialog").close();
+		},
+
 
 		onBtnRemoverPress: function(e){
 			let that = this;
@@ -153,5 +184,7 @@ sap.ui.define([
 				oTable.getColumns()[i].setFiltered(false);
 			}
 		}
+
 	});
+
 });

@@ -68,10 +68,12 @@
 				"dataSource": "default",
 				"preload": true,
 				"settings": {
+					"earlyRequests": true,
 					"operationMode": "Server",
 					"synchronizationMode": "None",
 					"updateGroupId" : "UpdateGroup",
-					"autoExpandSelect": true
+					"autoExpandSelect": true,
+					"groupId": "$direct"
 				}
 			}
 		},

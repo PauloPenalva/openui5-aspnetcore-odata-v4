@@ -22,7 +22,11 @@
 						rows="{
 							path: '/Pessoas',
 							parameters: {
-								operationMode: 'Server'
+								$$operationMode: 'Server'
+							},
+							sorter:{
+								path: 'id',
+								descending: true
 							}
 						}"
 						threshold="15"
@@ -41,7 +45,7 @@
 							</Toolbar>
 						</t:toolbar>
 						<t:columns>
-							<t:Column sortProperty="id" filterProperty="id" width="5em">
+							<t:Column id="id" sortProperty="id" filterProperty="id" width="5em">
 								<Label text="Id"/>
 								<t:template>
 									<Text text="{id}" wrapping="false"/>
@@ -98,8 +102,28 @@
 									<core:Title text="Incluir Nova Pessoa"/>
 									<Label text="Pessoa ID" />
 									<Input text="{id}" editable="false" />
-									<Label text="Nome" />
-									<Input value="{nome}" />
+									<Label text="Nome" labelFor="input_nome" />
+									<Input id="input_nome" value="{nome}" required="true" />
+									<Label text="CNPJ" />
+									<Input value="{cnpj}" />
+									<Label text="Ins.Estadual" />
+									<Input value="{inscricao}" />
+									<Label text="Telefone" />
+									<Input value="{telefone}" />
+								</f:SimpleForm>
+							</Dialog>
+							<Dialog id="AlteraPessoaDialog" title="Altera Dados da Pessoa">
+								<buttons>
+									<Button text="Ok" press="onBtnOkDialogAlterar" type="Accept"/>
+									<Button text="Cancelar" press="onBtnCancelarDialogAlterar" type="Reject"/>
+								</buttons>
+								<f:SimpleForm editable="true" layout="ResponsiveGridLayout"
+									ariaLabelledBy="AlteraPessoaDialog" class="sapUiSizeCompact">
+									<core:Title text="Altera Dados da Pessoa"/>
+									<Label text="Pessoa ID" />
+									<Input text="{id}" editable="false" />
+									<Label text="Nome"/>
+									<Input value="{nome}" required="true" />
 									<Label text="CNPJ" />
 									<Input value="{cnpj}" />
 									<Label text="Ins.Estadual" />
